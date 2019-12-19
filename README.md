@@ -1,6 +1,6 @@
-[![travis build](https://img.shields.io/travis/kenny-hibino/react-places-autocomplete.svg?style=flat-square)](https://travis-ci.org/kenny-hibino/react-places-autocomplete)
-[![MIT-License](https://img.shields.io/npm/l/react-places-autocomplete.svg?style=flat-square)]()
-[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/react-places-autocomplete/Lobby)
+[![travis build](https://img.shields.io/travis/kenny-hibino/react-autocomplete-places.svg?style=flat-square)](https://travis-ci.org/kenny-hibino/react-autocomplete-places)
+[![MIT-License](https://img.shields.io/npm/l/react-autocomplete-places.svg?style=flat-square)]()
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?style=flat-square)](https://gitter.im/react-autocomplete-places/Lobby)
 
 # React Places Autocomplete
 
@@ -8,7 +8,7 @@ A React component to build a customized UI for Google Maps Places Autocomplete
 
 ### Demo
 
-Live demo: [hibiken.github.io/react-places-autocomplete/](https://hibiken.github.io/react-places-autocomplete/)
+Live demo: [hibiken.github.io/react-autocomplete-places/](https://hibiken.github.io/react-autocomplete-places/)
 
 ### Features
 
@@ -24,13 +24,13 @@ Live demo: [hibiken.github.io/react-places-autocomplete/](https://hibiken.github
 To install the stable version
 
 ```sh
-npm install --save react-places-autocomplete
+npm install --save react-autocomplete-places
 ```
 
 React component is exported as a default export
 
 ```js
-import PlacesAutocomplete from 'react-places-autocomplete';
+import PlacesAutocomplete from 'react-autocomplete-places';
 ```
 
 utility functions are named exports
@@ -40,7 +40,7 @@ import {
   geocodeByAddress,
   geocodeByPlaceId,
   getLatLng,
-} from 'react-places-autocomplete';
+} from 'react-autocomplete-places';
 ```
 
 ### Getting Started
@@ -61,7 +61,7 @@ import React from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
-} from 'react-places-autocomplete';
+} from 'react-autocomplete-places';
 
 class LocationSearchInput extends React.Component {
   constructor(props) {
@@ -489,7 +489,7 @@ Required: `true`
 String that gets passed to Google Maps [Geocoder](https://developers.google.com/maps/documentation/javascript/geocoding)
 
 ```js
-import { geocodeByAddress } from 'react-places-autocomplete';
+import { geocodeByAddress } from 'react-autocomplete-places';
 
 // `results` is an entire payload from Google API.
 geocodeByAddress('Los Angeles, CA')
@@ -518,7 +518,7 @@ Required: `true`
 String that gets passed to Google Maps [Geocoder](https://developers.google.com/maps/documentation/javascript/geocoding)
 
 ```js
-import { geocodeByPlaceId } from 'react-places-autocomplete';
+import { geocodeByPlaceId } from 'react-autocomplete-places';
 
 // `results` is an entire payload from Google API.
 geocodeByPlaceId('ChIJE9on3F3HwoAR9AhGJW_fL-I')
@@ -547,7 +547,7 @@ Required: `true`
 One of the element from `results` (returned from Google Maps Geocoder)
 
 ```js
-import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { geocodeByAddress, getLatLng } from 'react-autocomplete-places';
 
 geocodeByAddress('Tokyo, Japan')
   .then(results => getLatLng(results[0]))
@@ -558,7 +558,7 @@ geocodeByAddress('Tokyo, Japan')
 
 ### Discussion
 
-Join us on [Gitter](https://gitter.im/react-places-autocomplete/Lobby) if you are interested in contributing!
+Join us on [Gitter](https://gitter.im/react-autocomplete-places/Lobby) if you are interested in contributing!
 
 ### License
 

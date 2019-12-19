@@ -1,9 +1,3 @@
-/*
-* Copyright (c) 2016-present, Ken Hibino.
-* Licensed under the MIT License (MIT).
-* See https://kenny-hibino.github.io/react-places-autocomplete
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
@@ -55,13 +49,13 @@ class PlacesAutocomplete extends React.Component {
   init = () => {
     if (!window.google) {
       throw new Error(
-        '[react-places-autocomplete]: Google Maps JavaScript API library must be loaded. See: https://github.com/kenny-hibino/react-places-autocomplete#load-google-library'
+        '[react-autocomplete-places]: Google Maps JavaScript API library must be loaded. See: https://github.com/kenny-hibino/react-autocomplete-places#load-google-library'
       );
     }
 
     if (!window.google.maps.places) {
       throw new Error(
-        '[react-places-autocomplete]: Google Maps Places library must be loaded. Please add `libraries=places` to the src URL. See: https://github.com/kenny-hibino/react-places-autocomplete#load-google-library'
+        '[react-autocomplete-places]: Google Maps Places library must be loaded. Please add `libraries=places` to the src URL. See: https://github.com/kenny-hibino/react-autocomplete-places#load-google-library'
       );
     }
 
@@ -99,16 +93,49 @@ class PlacesAutocomplete extends React.Component {
   };
 
   fetchPredictions = () => {
-    const { value } = this.props;
+    const { value, getSuggestionUrl } = this.props;
+    let self = this;
     if (value.length) {
       this.setState({ loading: true });
-      this.autocompleteService.getPlacePredictions(
-        {
-          ...this.props.searchOptions,
-          input: value,
-        },
-        this.autocompleteCallback
-      );
+      // make custom api call for data fetching fallback google autocomplete
+      let url = getSuggestionUrl;
+      if (!url) {
+        self.autocompleteService.getPlacePredictions(
+          {
+            ...self.props.searchOptions,
+            input: value,
+          },
+          self.autocompleteCallback
+        );
+        return;
+      }
+      fetch(url)
+        .then(response => response.json())
+        .then(function(data) {
+          if (data.status === 'OK' || data.predictions.length > 0) {
+            self.autocompleteCallback(
+              data.predictions,
+              window.google.maps.places.PlacesServiceStatus.OK
+            );
+          } else {
+            self.autocompleteService.getPlacePredictions(
+              {
+                ...self.props.searchOptions,
+                input: value,
+              },
+              self.autocompleteCallback
+            );
+          }
+        })
+        .catch(function() {
+          self.autocompleteService.getPlacePredictions(
+            {
+              ...self.props.searchOptions,
+              input: value,
+            },
+            self.autocompleteCallback
+          );
+        });
     }
   };
 
@@ -257,13 +284,13 @@ class PlacesAutocomplete extends React.Component {
   getInputProps = (options = {}) => {
     if (options.hasOwnProperty('value')) {
       throw new Error(
-        '[react-places-autocomplete]: getInputProps does not accept `value`. Use `value` prop instead'
+        '[react-autocomplete-places]: getInputProps does not accept `value`. Use `value` prop instead'
       );
     }
 
     if (options.hasOwnProperty('onChange')) {
       throw new Error(
-        '[react-places-autocomplete]: getInputProps does not accept `onChange`. Use `onChange` prop instead'
+        '[react-autocomplete-places]: getInputProps does not accept `onChange`. Use `onChange` prop instead'
       );
     }
 
@@ -369,6 +396,7 @@ PlacesAutocomplete.propTypes = {
   children: PropTypes.func.isRequired,
   onError: PropTypes.func,
   onSelect: PropTypes.func,
+  getSuggestionUrl: PropTypes.string,
   searchOptions: PropTypes.shape({
     bounds: PropTypes.object,
     componentRestrictions: PropTypes.object,
@@ -387,7 +415,7 @@ PlacesAutocomplete.defaultProps = {
   /* eslint-disable no-unused-vars, no-console */
   onError: (status, _clearSuggestions) =>
     console.error(
-      '[react-places-autocomplete]: error happened when fetching data from Google Maps API.\nPlease check the docs here (https://developers.google.com/maps/documentation/javascript/places#place_details_responses)\nStatus: ',
+      '[react-autocomplete-places]: error happened when fetching data from Google Maps API.\nPlease check the docs here (https://developers.google.com/maps/documentation/javascript/places#place_details_responses)\nStatus: ',
       status
     ),
   /* eslint-enable no-unused-vars, no-console */

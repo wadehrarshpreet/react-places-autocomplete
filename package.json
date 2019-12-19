@@ -1,6 +1,6 @@
 {
-  "name": "react-places-autocomplete",
-  "version": "7.2.1",
+  "name": "react-autocomplete-places",
+  "version": "7.3.0",
   "description": "A React component for Google Maps Places Autocomplete",
   "main": "dist/index.js",
   "scripts": {
@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kenny-hibino/react-places-autocomplete.git"
+    "url": "https://github.com/wadehrarshpreet/react-autocomplete-places.git"
   },
   "keywords": [
     "React.js",
@@ -52,12 +52,12 @@
     "dist",
     "README.md"
   ],
-  "author": "Ken Hibino <ken.hibino7@gmail.com> (http://www.kenhibino.com/)",
+  "author": "Wadehrarshpreet",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kenny-hibino/react-places-autocomplete/issues"
+    "url": "https://github.com/wadehrarshpreet/react-autocomplete-places/issues"
   },
-  "homepage": "https://github.com/kenny-hibino/react-places-autocomplete#readme",
+  "homepage": "https://github.com/wadehrarshpreet/react-autocomplete-places#readme",
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-eslint": "8.2.2",
@@ -70,11 +70,11 @@
     "babel-preset-react": "^6.23.1",
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "6.26.0",
-    "commitizen": "2.8.2",
+    "commitizen": "^4.0.3",
     "copy-webpack-plugin": "^4.0.1",
-    "cz-conventional-changelog": "1.1.6",
-    "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
+    "cz-conventional-changelog": "^3.0.2",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-to-json": "3.3.3",
     "eslint": "4.18.2",
     "eslint-config-prettier": "2.9.0",
@@ -125,8 +125,13 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
+    "testURL": "http://localhost",
     "collectCoverageFrom": [
       "src/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/dist/",
+      "<rootDir>/node_modules/"
     ]
   }
 }

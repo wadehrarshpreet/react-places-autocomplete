@@ -5,7 +5,7 @@ const Demo = () => (
   <div className="page-wrapper">
     <div className="container">
       <h1 className="display-3">
-        react-places-autocomplete{' '}
+        react-autocomplete-places{' '}
         <i className="fa fa-map-marker header Demo__map-maker-icon" />
       </h1>
       <p className="lead">
@@ -14,7 +14,7 @@ const Demo = () => (
       </p>
       <hr />
       <a
-        href="https://github.com/kenny-hibino/react-places-autocomplete"
+        href="https://github.com/kenny-hibino/react-autocomplete-places"
         className="Demo__github-link"
         target="_blank"
         rel="noopener noreferrer"

@@ -13,4 +13,4 @@ Before creating a PR, please squash your commits for clean git commit history :o
 Please update the README file with any API changes, the code and docs should always be in sync.
 
 ## Community
-If you have any questions, please feel free to ask in our [Gitter channel](https://gitter.im/react-places-autocomplete/Lobby)!
+If you have any questions, please feel free to ask in our [Gitter channel](https://gitter.im/react-autocomplete-places/Lobby)!
