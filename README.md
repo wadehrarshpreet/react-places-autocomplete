@@ -505,9 +505,10 @@ geocodeByAddress('Los Angeles, CA')
 /**
  * Returns a promise
  * @param {String} placeId
+ * @param {String} getPlaceUrl
  * @return {Promise}
  */
-geocodeByPlaceId(placeId);
+geocodeByPlaceId(placeId, getPlaceUrl);
 ```
 
 #### placeId
@@ -522,6 +523,10 @@ import { geocodeByPlaceId } from 'react-autocomplete-places';
 
 // `results` is an entire payload from Google API.
 geocodeByPlaceId('ChIJE9on3F3HwoAR9AhGJW_fL-I')
+  .then(results => console.log(results))
+  .catch(error => console.error(error));
+
+geocodeByPlaceId('ChIJE9on3F3HwoAR9AhGJW_fL-I', '/api/custom/place_api')
   .then(results => console.log(results))
   .catch(error => console.error(error));
 ```
@@ -555,10 +560,6 @@ geocodeByAddress('Tokyo, Japan')
     console.log('Successfully got latitude and longitude', { lat, lng })
   );
 ```
-
-### Discussion
-
-Join us on [Gitter](https://gitter.im/react-autocomplete-places/Lobby) if you are interested in contributing!
 
 ### License
 
